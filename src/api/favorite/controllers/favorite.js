@@ -72,5 +72,30 @@ module.exports = createCoreController(
 
       return response;
     },
+
+    async delete(ctx) {
+        console.log(ctx.params.id);
+        const user = await strapi.db.query('api::favorite.favorite').delete({
+            where: {
+                student: {
+                    id: {
+                        $eq: ctx.params.id,
+                    }
+                },
+                user: {
+                    id: {
+                        $eq: ctx.state.auth.credentials.id,
+                    },
+                },
+            },
+        });
+        if ( user ) {
+            return { 
+                "message": "Removed Successfully",
+                "status": "OK"
+            }
+        }
+        
+    }
   })
 );
