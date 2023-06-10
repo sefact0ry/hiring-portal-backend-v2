@@ -46,28 +46,54 @@ module.exports = createCoreController(
         
         return entries ;
     },
-
+                // majors: {
+                //     // major :"Computer Science",
+                //     // id: { $in: [1,2,3] }
+                // },
     async findByFilters(ctx) {
-        const { majors } = ctx.request.body;
+        const { majors, languages, skills, job_types, available } = ctx.request.body;
 
-        return majors ;
+        const where = {};
+        if (majors && majors.length > 0) {
+            where.majors = {
+                major: { $in: majors }
+            };
+        }
+        if (skills && skills.length > 0) {
+            where.skills = {
+                skill: { $in: skills }
+            };
+        }
+        if (job_types && job_types.length > 0) {
+            where.job_types = {
+                job_type: { $in: job_types }
+            };
+        }
+        if ( languages && languages.length > 0) {
+            where.languages = {
+                language: { $in: languages }
+            };
+        }
+        if ( available ) {
+            where.Available = true 
+        }
+        console.log(ctx.state.auth.credentials.id);
 
-        
         const entries = await strapi.db.query('api::student.student').findMany({
-            where: {
+            where,
+            populate: {                    
                 majors: {
-                    major :"Computer Science",
-                    // id: { $in: [1,2,3] }
+                    select: ['major', 'id']
                 },
-            },
-            populate: {
-                majors: true,
                 skills: {
                     select: ['skill', 'id']
                 },
-                job_types: true,
-                languages: true,
-                
+                job_types: {
+                    select: ['job_type', 'id']
+                },
+                languages: {
+                    select: ['language', 'id']
+                },
             },
         });
         return entries ;

@@ -61,7 +61,7 @@
       "target": "api::job-type.job-type",
       "inversedBy": "students"
     },
-    "langugages": {
+    "languages": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::langugage.langugage",
