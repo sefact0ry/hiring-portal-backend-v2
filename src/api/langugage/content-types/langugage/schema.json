@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "langugages",
+  "info": {
+    "singularName": "langugage",
+    "pluralName": "langugages",
+    "displayName": "langugage",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "language": {
+      "type": "string",
+      "required": true
+    },
+    "students": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::student.student",
+      "mappedBy": "langugages"
+    }
+  }
+}

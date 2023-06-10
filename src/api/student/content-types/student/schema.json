@@ -1,0 +1,83 @@
+{
+  "kind": "collectionType",
+  "collectionName": "students",
+  "info": {
+    "singularName": "student",
+    "pluralName": "students",
+    "displayName": "Student",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "full_name": {
+      "type": "string",
+      "required": true,
+      "minLength": 3,
+      "maxLength": 20
+    },
+    "description": {
+      "type": "richtext",
+      "required": true,
+      "minLength": 3
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": [
+        "Male",
+        "Female ",
+        "Other"
+      ],
+      "default": "Other"
+    },
+    "Available": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "calendly": {
+      "type": "string",
+      "required": true
+    },
+    "pdf": {
+      "type": "string",
+      "required": true
+    },
+    "linkedIn": {
+      "type": "string",
+      "required": true
+    },
+    "skills": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::skill.skill",
+      "inversedBy": "students"
+    },
+    "job_types": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::job-type.job-type",
+      "inversedBy": "students"
+    },
+    "langugages": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::langugage.langugage",
+      "inversedBy": "students"
+    },
+    "majors": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::major.major",
+      "inversedBy": "students"
+    },
+    "favorite": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::favorite.favorite",
+      "mappedBy": "student"
+    }
+  }
+}
