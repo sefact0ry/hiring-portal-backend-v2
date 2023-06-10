@@ -10,21 +10,51 @@ const deepcopy = (obj) => JSON.parse(JSON.stringify(obj));
 module.exports = createCoreController(
   "api::favorite.favorite",
   ({ strapi }) => ({
-    async find(ctx) {
-        console.log(ctx);
-      ctx.query = {
-        ...ctx.query,
-        filters: {
-          user: {
-            id: {
-              $eq: ctx.state.user.id,
-            },
-          },
-        },
-      };
-      const { data, meta } = await super.find(ctx);
+    // async find(ctx) {
+    //   ctx.query = {
+    //     ...ctx.query,
+    //     filters: {
+    //       user: {
+    //         id: {
+    //           $eq: ctx.state.auth.credentials.id,
+    //         },
+    //       },
+    //     },
+    //   };
+    //   const { data, meta } = await super.find(ctx);
 
-      return { data, meta };
+    //   return { data, meta };
+
+    async find(ctx) {
+        const entries = await strapi.db.query('api::favorite.favorite').findMany({
+            where: {
+                user: {
+                    id: {
+                        $eq: ctx.state.auth.credentials.id,
+                    },
+                },
+            },
+            populate: {
+                student: {
+                    select: ['*'],
+                    populate : {
+                        majors: {
+                            select: ['major', 'id']
+                        },
+                        skills: {
+                            select: ['skill', 'id']
+                        },
+                        job_types: {
+                            select: ['job_type', 'id']
+                        },
+                        languages: {
+                            select: ['language', 'id']
+                        },
+                    } 
+                }
+            },
+        });
+        return entries ;
     },
 
     async create(ctx) {
