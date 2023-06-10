@@ -11,6 +11,7 @@ module.exports = createCoreController(
   "api::favorite.favorite",
   ({ strapi }) => ({
     async find(ctx) {
+        console.log(ctx);
       ctx.query = {
         ...ctx.query,
         filters: {
@@ -27,10 +28,11 @@ module.exports = createCoreController(
     },
 
     async create(ctx) {
+        console.log(ctx.state.auth.credentials.id);
       ctx.request.body = {
         data: {
           ...ctx.request.body.data,
-          user: ctx.state.user.id,
+          user: ctx.state.auth.credentials.id,
         },
       };
 

@@ -77,7 +77,7 @@ module.exports = createCoreController(
         if ( available ) {
             where.Available = true 
         }
-        console.log(ctx.state.auth.credentials.id);
+        // console.log(ctx.state.auth.credentials.id);
 
         const entries = await strapi.db.query('api::student.student').findMany({
             where,
