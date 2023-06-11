@@ -61,12 +61,6 @@
       "target": "api::job-type.job-type",
       "inversedBy": "students"
     },
-    "languages": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::langugage.langugage",
-      "inversedBy": "students"
-    },
     "majors": {
       "type": "relation",
       "relation": "manyToMany",
@@ -78,6 +72,12 @@
       "relation": "oneToOne",
       "target": "api::favorite.favorite",
       "mappedBy": "student"
+    },
+    "languages": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::language.language",
+      "inversedBy": "students"
     }
   }
 }

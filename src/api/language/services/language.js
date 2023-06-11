@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * langugage service
+ * language service
  */
 
 const { createCoreService } = require('@strapi/strapi').factories;
 
-module.exports = createCoreService('api::langugage.langugage');
+module.exports = createCoreService('api::language.language');

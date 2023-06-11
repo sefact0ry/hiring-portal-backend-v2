@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "langugages",
+  "collectionName": "languages",
   "info": {
-    "singularName": "langugage",
-    "pluralName": "langugages",
-    "displayName": "langugage",
+    "singularName": "language",
+    "pluralName": "languages",
+    "displayName": "language",
     "description": ""
   },
   "options": {

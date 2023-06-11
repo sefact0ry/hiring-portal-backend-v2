@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * langugage controller
+ * language controller
  */
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::langugage.langugage');
+module.exports = createCoreController('api::language.language');
