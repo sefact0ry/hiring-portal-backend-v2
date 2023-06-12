@@ -9,8 +9,7 @@
     "displayName": "User"
   },
   "options": {
-    "draftAndPublish": false,
-    "timestamps": true
+    "draftAndPublish": false
   },
   "attributes": {
     "username": {
@@ -66,11 +65,11 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "favorite": {
+    "favorites": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::favorite.favorite",
-      "mappedBy": "user"
+      "relation": "manyToMany",
+      "target": "api::student.student",
+      "mappedBy": "favorite_users"
     }
   }
 }

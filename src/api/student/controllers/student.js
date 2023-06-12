@@ -51,9 +51,18 @@ module.exports = createCoreController(
                 //     // id: { $in: [1,2,3] }
                 // },
     async findByFilters(ctx) {
-        const { majors, languages, skills, job_types, available } = ctx.request.body;
+        const { majors, languages, skills, job_types, available, favorite } = ctx.request.body;
 
         const where = {};
+        if (favorite) {
+            where.favorite = {
+                user: {
+                    id: {
+                        $eq: ctx.state.auth.credentials.id,
+                    },
+                },
+            };
+        }
         if (majors && majors.length > 0) {
             where.majors = {
                 major: { $in: majors }
@@ -94,7 +103,21 @@ module.exports = createCoreController(
                 languages: {
                     select: ['language', 'id']
                 },
+                favorite: {
+                    select: [],
+                    populate : {
+                        student: {
+                            select: ['id']
+                        },
+                        user: {
+                            select: ['id']
+                        }
+                    }
+                }                    
             },
+            orderBy: {
+                Available: 'desc'
+            }
         });
         return entries ;
     }
