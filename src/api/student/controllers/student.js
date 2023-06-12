@@ -50,18 +50,63 @@ module.exports = createCoreController(
                 //     // major :"Computer Science",
                 //     // id: { $in: [1,2,3] }
                 // },
+
+    async addStudentToFavorites(ctx) {
+        const { id } = ctx.params;
+        const  user_id  = ctx.state.auth.credentials.id;
+        try {
+            await strapi.db.query('api::student.student').update({
+                where: {
+                    id: { $eq: id }
+                },
+                data: {
+                    favorite_users: {
+                        connect: {
+                            id: user_id
+                        }
+                    }
+                }
+            });
+            return {
+                message: 'Student added to favorites successfully'
+            }
+        } catch(err) {
+            ctx.throw(400, err);
+        }
+
+    },
+    async removeStudentFromFavorites(ctx) {
+        const { id } = ctx.params;
+        const  user_id  = ctx.state.auth.credentials.id;
+        try {
+            await strapi.db.query('api::student.student').update({
+                where: {
+                    id: { $eq: id }
+                },
+                data: {
+                    favorite_users: {
+                        disconnect: {
+                            id: user_id
+                        }
+                    }
+                }
+            });
+            return {
+                message: 'Student removed from favorites successfully'
+            }
+        } catch(err) {
+            ctx.throw(400, err);
+        }
+    },
+
     async findByFilters(ctx) {
         const { majors, languages, skills, job_types, available, favorite } = ctx.request.body;
 
         const where = {};
         if (favorite) {
-            where.favorite = {
-                user: {
-                    id: {
-                        $eq: ctx.state.auth.credentials.id,
-                    },
-                },
-            };
+            where.favorite_users = {
+                id: { $eq: ctx.state.auth.credentials.id }
+            }
         }
         if (majors && majors.length > 0) {
             where.majors = {
@@ -103,16 +148,8 @@ module.exports = createCoreController(
                 languages: {
                     select: ['language', 'id']
                 },
-                favorite: {
-                    select: [],
-                    populate : {
-                        student: {
-                            select: ['id']
-                        },
-                        user: {
-                            select: ['id']
-                        }
-                    }
+                favorite_users: {
+                    select: 'id',
                 }                    
             },
             orderBy: {
