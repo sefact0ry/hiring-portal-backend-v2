@@ -100,7 +100,7 @@ module.exports = createCoreController(
     },
 
     async findByFilters(ctx) {
-        const { majors, languages, skills, job_types, available, favorite } = ctx.request.body;
+        const { majors, languages, skills, job_types, available, favorite, cycleDate } = ctx.request.body;
 
         const where = {};
         if (favorite) {
@@ -131,6 +131,10 @@ module.exports = createCoreController(
         if ( available ) {
             where.Available = true 
         }
+        if ( cycleDate ) {
+            where.cycle = cycleDate
+        }
+
         // console.log(ctx.state.auth.credentials.id);
 
         const entries = await strapi.db.query('api::student.student').findMany({
