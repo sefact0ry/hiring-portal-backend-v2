@@ -1,5 +1,4 @@
 'use strict';
-// const unparsed = require('koa-body/unparsed.js');
 /**
  * student controller
 */
