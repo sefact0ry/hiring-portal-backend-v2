@@ -10,29 +10,6 @@ const { createCoreController } = require('@strapi/strapi').factories;
 module.exports = createCoreController(
   "api::student.student",
   ({ strapi }) => ({
-    async findAvailable(ctx) {
-        ctx.query = {
-          ...ctx.query,
-          Available: {
-            $eq: true
-          },
-        };
-    
-        const { data, meta } = await strapi.controllers["api::student.student"].find(ctx);
-    
-        return { data, meta };
-    },
-
-
-    async findByName(ctx) {   
-        const entries = await strapi.db.query('api::student.student').findMany({
-            where: {
-                full_name: 'tony kosseify',
-            },
-          });
-        
-        return entries ;
-    },
 
     async find(ctx) {
         const entries = await strapi.db.query('api::student.student').findMany({
@@ -141,16 +118,16 @@ module.exports = createCoreController(
             where,
             populate: {                    
                 majors: {
-                    select: ['major', 'id']
+                    select: ['major']
                 },
                 skills: {
-                    select: ['skill', 'id']
+                    select: ['skill']
                 },
                 job_types: {
-                    select: ['job_type', 'id']
+                    select: ['job_type']
                 },
                 languages: {
-                    select: ['language', 'id']
+                    select: ['language']
                 },
                 favorite_users: {
                     select: 'id',
