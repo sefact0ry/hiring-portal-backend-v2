@@ -76,7 +76,7 @@ module.exports = createCoreController(
     },
 
     async findByFilters(ctx) {
-        const { majors, languages, skills, job_types, available,recruited, favorite, cycleDate } = ctx.request.body;
+        const { majors, languages, skills, job_types, available,recruited, favorite } = ctx.request.body;
 
         const where = {};
         if (favorite) {
@@ -105,9 +105,6 @@ module.exports = createCoreController(
             };
         }
         
-        if ( cycleDate ) {
-            where.cycle = cycleDate
-        }
         if ( available === !recruited) {
             where.Available = available ;
         }
