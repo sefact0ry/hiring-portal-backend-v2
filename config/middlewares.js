@@ -11,14 +11,6 @@ module.exports = [
   },
   'strapi::logger',
   'strapi::query',
-  // {
-  //   name: 'strapi::body',
-  //   config: {
-  //     patchKoa: true,
-  //     multipart: true,
-  //     includeUnparsed: true,
-  //   },
-  // },
   'strapi::body',
   'strapi::session',
   'strapi::favicon',
