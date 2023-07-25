@@ -1,5 +1,5 @@
 {
-  "kind": "singleType",
+  "kind": "collectionType",
   "collectionName": "partners",
   "info": {
     "singularName": "partner",
@@ -11,15 +11,13 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "partnersImages": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
-      "type": "media",
-      "multiple": true
+    "partnerName": {
+      "type": "string",
+      "required": true
+    },
+    "partnerImage": {
+      "type": "string",
+      "required": true
     }
   }
 }
