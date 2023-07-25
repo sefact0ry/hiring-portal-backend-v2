@@ -11,17 +11,13 @@ module.exports = createCoreController("api::student.student", ({ strapi }) => ({
       populate: {
         majors: true,
         skills: true,
-        job_types: true,
         languages: true,
       },
     });
 
     return entries;
   },
-  // majors: {
-  //     // major :"Computer Science",
-  //     // id: { $in: [1,2,3] }
-  // },
+
 
   async addStudentToFavorites(ctx) {
     const { id } = ctx.params;
@@ -75,7 +71,6 @@ module.exports = createCoreController("api::student.student", ({ strapi }) => ({
       majors,
       languages,
       skills,
-      job_types,
       available,
       recruited,
       favorite,
@@ -95,11 +90,6 @@ module.exports = createCoreController("api::student.student", ({ strapi }) => ({
     if (skills && skills.length > 0) {
       where.skills = {
         skill: { $in: skills },
-      };
-    }
-    if (job_types && job_types.length > 0) {
-      where.job_types = {
-        job_type: { $in: job_types },
       };
     }
     if (languages && languages.length > 0) {
@@ -122,9 +112,6 @@ module.exports = createCoreController("api::student.student", ({ strapi }) => ({
         },
         skills: {
           select: ["skill"],
-        },
-        job_types: {
-          select: ["job_type"],
         },
         languages: {
           select: ["language"],

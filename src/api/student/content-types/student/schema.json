@@ -55,12 +55,6 @@
       "target": "api::skill.skill",
       "inversedBy": "students"
     },
-    "job_types": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::job-type.job-type",
-      "inversedBy": "students"
-    },
     "majors": {
       "type": "relation",
       "relation": "manyToMany",
