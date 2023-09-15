@@ -73,8 +73,8 @@
       "target": "plugin::users-permissions.user",
       "inversedBy": "favorites"
     },
-    "cycle": {
-      "type": "string"
+    "portfolioLink": {
+      "type": "text"
     }
   }
 }
