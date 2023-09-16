@@ -5,8 +5,8 @@ module.exports = ({ env }) => ({
       // See `Config` section.
     },
   },
-  bulkoperator: {
-    enabled: true,
-    resolve: "strapi-bulk-operator",
-  }
+  // bulkoperator: {
+  //   enabled: true,
+  //   resolve: "strapi-bulk-operator",
+  // }
 });
