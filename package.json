@@ -20,7 +20,6 @@
     "react-dom": "^18.2.0",
     "strapi-bulk-operator": "^0.0.5",
     "strapi-plugin-import-export-entries": "^1.21.1",
-    "styled-components": "^6.0.8",
     "xlsx": "^0.18.5"
   },
   "author": {
