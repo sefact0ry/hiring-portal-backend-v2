@@ -10,16 +10,13 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/plugin-i18n": "^4.7.1",
-    "@strapi/plugin-users-permissions": "^4.7.1",
-    "@strapi/strapi": "^4.7.1",
-    "better-sqlite3": "^8.6.0",
-    "pg": "^8.11.3",
-    "pg-connection-string": "^2.6.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "@strapi/plugin-i18n": "4.10.7",
+    "@strapi/plugin-users-permissions": "4.10.7",
+    "@strapi/strapi": "4.10.7",
+    "better-sqlite3": "8.0.1",
+    "pg": "^8.11.0",
     "strapi-bulk-operator": "^0.0.5",
-    "strapi-plugin-import-export-entries": "^1.21.1",
+    "strapi-plugin-import-export-entries": "^1.21.0",
     "xlsx": "^0.18.5"
   },
   "author": {
