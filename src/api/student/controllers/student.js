@@ -101,7 +101,7 @@ module.exports = createCoreController("api::student.student", ({ strapi }) => ({
     if (available === !recruited) {
       where.Available = available;
     }
-
+    where.published_at = { $ne: null };
     // console.log(ctx.state.auth.credentials.id);
 
     const entries = await strapi.db.query("api::student.student").findMany({
